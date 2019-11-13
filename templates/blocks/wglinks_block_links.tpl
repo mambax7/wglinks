@@ -1,0 +1,10 @@
+<{if $block}>
+    <{if ($blockStyle == '2cards' || $blockStyle == '3cards' || $blockStyle == '4cards' || $blockStyle == '6cards' || $blockStyle == '12cards')}>
+        <{include file='db:wglinks_block_links_cards.tpl' link=$link}>
+    <{else}>
+        <{include file='db:wglinks_block_links_default.tpl' link=$link}>
+    <{/if}>
+    <{if $showMore}>
+        <div class="center"><a class="btn btn-primary" href="<{$wglinks_url}>" title="<{$smarty.const._MA_WGLINKS_SHOW_MORE}>" target="_self"><{$smarty.const._MA_WGLINKS_SHOW_MORE}></a></div>
+    <{/if}>
+<{/if}>
