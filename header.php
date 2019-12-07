@@ -25,11 +25,11 @@ include __DIR__ .'/include/common.php';
 $dirname  = basename(__DIR__);
 
 // Get instance of module
-$wglinks = WglinksHelper::getInstance();
-$linksHandler = $wglinks->getHandler('links');
+$helper = \XoopsModules\Wglinks\Helper::getInstance();
+$linksHandler = $helper->getHandler('links');
 // Breadcrumbs
 $xoBreadcrumbs = array();
-if ($wglinks->getConfig('show_breadcrumbs') && $wglinks->getConfig('show_bcrumb_mname')) {
+if ($helper->getConfig('show_breadcrumbs') && $helper->getConfig('show_bcrumb_mname')) {
     if ( isset($GLOBALS['xoopsModule']) && is_object($GLOBALS['xoopsModule'])) { // necessary to check, otherwise uploader runs into errors
         $xoBreadcrumbs[] = array('title' => $GLOBALS['xoopsModule']->getVar('name'), 'link' => WGLINKS_URL . '/');
     }

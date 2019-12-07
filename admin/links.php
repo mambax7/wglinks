@@ -20,11 +20,14 @@
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 links.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
  */
+
+use Xmf\Request;
+
 include __DIR__ . '/header.php';
 // It recovered the value of argument op in URL$
-$op = XoopsRequest::getString('op', 'list');
+$op = Request::getString('op', 'list');
 // Request link_id
-$linkId = XoopsRequest::getInt('link_id');
+$linkId = Request::getInt('link_id');
 
 switch($op) {
 	case 'list':
@@ -32,12 +35,12 @@ switch($op) {
 		$GLOBALS['xoTheme']->addScript(WGLINKS_URL . '/assets/js/jquery.js');
         $GLOBALS['xoTheme']->addScript(WGLINKS_URL . '/assets/js/jquery-ui.js');
         $GLOBALS['xoTheme']->addScript(WGLINKS_URL . '/assets/js/sortable-links.js');
-        $start = XoopsRequest::getInt('start', 0);
-		$limit = XoopsRequest::getInt('limit', $wglinks->getConfig('adminpager'));
+        $start = Request::getInt('start', 0);
+		$limit = Request::getInt('limit', $helper->getConfig('adminpager'));
 		$templateMain = 'wglinks_admin_links.tpl';
-		$GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('links.php'));
-		$adminMenu->addItemButton(_AM_WGLINKS_ADD_LINK, 'links.php?op=new', 'add');
-		$GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('links.php'));
+        $adminObject->addItemButton(_AM_WGLINKS_ADD_LINK, 'links.php?op=new', 'add');
+		$GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
 		$linksCount = $linksHandler->getCountLinks();
 		$linksAll = $linksHandler->getAllLinks($start, $limit);
 		$GLOBALS['xoopsTpl']->assign('links_count', $linksCount);
@@ -62,7 +65,7 @@ switch($op) {
 			// Display Navigation
 			if($linksCount > $limit) {
 				include_once XOOPS_ROOT_PATH .'/class/pagenav.php';
-				$pagenav = new XoopsPageNav($linksCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
+				$pagenav = new \XoopsPageNav($linksCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
 				$GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
 			}
 		} else {
@@ -72,9 +75,9 @@ switch($op) {
 	break;
 	case 'new':
 		$templateMain = 'wglinks_admin_links.tpl';
-		$GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('links.php'));
-		$adminMenu->addItemButton(_AM_WGLINKS_LINKS_LIST, 'links.php', 'list');
-		$GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('links.php'));
+        $adminObject->addItemButton(_AM_WGLINKS_LINKS_LIST, 'links.php', 'list');
+		$GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
 		// Get Form
 		$linksObj = $linksHandler->create();
 		$form = $linksObj->getFormLinks();
@@ -107,7 +110,7 @@ switch($op) {
         if (strlen($fileName) > 0) {
             $imageMimetype = $_FILES['attachedfile']['type'];
             include_once XOOPS_ROOT_PATH .'/class/uploader.php';
-            $uploader = new XoopsMediaUploader(WGLINKS_UPLOAD_IMAGE_PATH . "/links/large/", $wglinks->getConfig('mimetypes'), $wglinks->getConfig('maxsize'), null, null);
+            $uploader = new \XoopsMediaUploader(WGLINKS_UPLOAD_IMAGE_PATH . "/links/large/", $helper->getConfig('mimetypes'), $helper->getConfig('maxsize'), null, null);
             if($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
                 $extension = preg_replace('/^.+\.([^.]+)$/sU', '', $fileName);
                 $imgName = str_replace(' ', '', $_POST['link_name']) . '.' . $extension;
@@ -122,12 +125,12 @@ switch($op) {
                     // resize image
                     include_once XOOPS_ROOT_PATH . '/modules/wglinks/include/imagehandler.php';
                     // resize large image
-                    $maxwidth = $wglinks->getConfig('maxwidth_large');
-                    $maxheight = $wglinks->getConfig('maxheight_large');
+                    $maxwidth = $helper->getConfig('maxwidth_large');
+                    $maxheight = $helper->getConfig('maxheight_large');
                     $ret = ResizeImage(WGLINKS_UPLOAD_IMAGE_PATH . '/links/large/' . $savedFilename, WGLINKS_UPLOAD_IMAGE_PATH . '/links/large/' . $savedFilename, $maxwidth, $maxheight, $imageMimetype);
                     // resize thumb image
-                    $maxwidth = $wglinks->getConfig('maxwidth_thumbs');
-                    $maxheight = $wglinks->getConfig('maxheight_thumbs');
+                    $maxwidth = $helper->getConfig('maxwidth_thumbs');
+                    $maxheight = $helper->getConfig('maxheight_thumbs');
                     $ret = ResizeImage(WGLINKS_UPLOAD_IMAGE_PATH . '/links/large/' . $savedFilename, WGLINKS_UPLOAD_IMAGE_PATH . '/links/thumbs/' . $savedFilename, $maxwidth, $maxheight, $imageMimetype);
                 }
             }
@@ -149,10 +152,10 @@ switch($op) {
 	break;
 	case 'edit':
 		$templateMain = 'wglinks_admin_links.tpl';
-		$GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('links.php'));
-		$adminMenu->addItemButton(_AM_WGLINKS_ADD_LINK, 'links.php?op=new', 'add');
-		$adminMenu->addItemButton(_AM_WGLINKS_LINKS_LIST, 'links.php', 'list');
-		$GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
+		$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('links.php'));
+        $adminObject->addItemButton(_AM_WGLINKS_ADD_LINK, 'links.php?op=new', 'add');
+        $adminObject->addItemButton(_AM_WGLINKS_LINKS_LIST, 'links.php', 'list');
+		$GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
 		// Get Form
 		$linksObj = $linksHandler->get($linkId);
 		$form = $linksObj->getFormLinks();
@@ -205,7 +208,7 @@ switch($op) {
 		if(isset($linkId)) {
 			$linksObj = $linksHandler->get($linkId);
 		    // Set Vars
-            $linksObj->setVar('link_state', XoopsRequest::getInt('link_state'));
+            $linksObj->setVar('link_state', Request::getInt('link_state'));
             // Insert Data
             if($linksHandler->insert($linksObj)) {
                 redirect_header('links.php?op=list&amp;start=' . $start . '&amp;limit=' . $limit, 2, _AM_WGLINKS_FORM_OK);

@@ -27,10 +27,10 @@ $countLinks = $linksHandler->getCount();
 // Template Index
 $templateMain = 'wglinks_admin_index.tpl';
 // InfoBox Statistics
-$adminMenu->addInfoBox(_AM_WGLINKS_STATISTICS);
+$adminObject->addInfoBox(_AM_WGLINKS_STATISTICS);
 // Info elements
-$adminMenu->addInfoBoxLine(_AM_WGLINKS_STATISTICS, '<label>'._AM_WGLINKS_THEREARE_CATS.'</label>', $countCategories);
-$adminMenu->addInfoBoxLine(_AM_WGLINKS_STATISTICS, '<label>'._AM_WGLINKS_THEREARE_LINKS.'</label>', $countLinks);
+$adminObject->addInfoBoxLine(sprintf('<label>' . _AM_WGLINKS_THEREARE_CATS . '</label>', $countCategories));
+$adminObject->addInfoBoxLine(sprintf('<label>' . _AM_WGLINKS_THEREARE_LINKS . '</label>', $countLinks));
 // Upload Folders
 $folder = array(
 	WGLINKS_UPLOAD_PATH,
@@ -42,11 +42,21 @@ $folder = array(
 );
 // Uploads Folders Created
 foreach(array_keys($folder) as $i) {
-	$adminMenu->addConfigBoxLine($folder[$i], 'folder');
-	$adminMenu->addConfigBoxLine(array($folder[$i], '777'), 'chmod');
+	$adminObject->addConfigBoxLine($folder[$i], 'folder');
+	$adminObject->addConfigBoxLine(array($folder[$i], '777'), 'chmod');
 }
 
-// Render Index
-$GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('index.php'));
-$GLOBALS['xoopsTpl']->assign('index', $adminMenu->renderIndex());
+//------------- Test Data ----------------------------
+if ($helper->getConfig('displaySampleButton')) {
+    xoops_loadLanguage('admin/modulesadmin', 'system');
+    require dirname(__DIR__) . '/testdata/index.php';
+
+    $adminObject->addItemButton(constant('CO_' . $moduleDirNameUpper . '_' . 'ADD_SAMPLEDATA'), '__DIR__ . /../../testdata/index.php?op=load', 'add');
+    $adminObject->addItemButton(constant('CO_' . $moduleDirNameUpper . '_' . 'SAVE_SAMPLEDATA'), '__DIR__ . /../../testdata/index.php?op=save', 'add');
+    //    $adminObject->addItemButton(constant('CO_' . $moduleDirNameUpper . '_' . 'EXPORT_SCHEMA'), '__DIR__ . /../../testdata/index.php?op=exportschema', 'add');
+    $adminObject->displayButton('left', '');
+}
+//------------- End Test Data ----------------------------
+$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('index.php'));
+$GLOBALS['xoopsTpl']->assign('index', $adminObject->displayIndex());
 include __DIR__ . '/footer.php';

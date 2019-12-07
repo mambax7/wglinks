@@ -94,10 +94,10 @@ function ResizeImage($sourcefile, $endfile, $max_width, $max_height, $imageMimet
                 imagegif($tmpimg, $endfile);
             break;
         }
-                    
         // release the memory
         imagedestroy($tmpimg);
     } else {
+        copy($sourcefile, $endfile);
         return 'copy';
     }
     imagedestroy($img);

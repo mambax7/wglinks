@@ -20,6 +20,9 @@
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 modinfo.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
  */
+
+require_once __DIR__ . '/common.php';
+
 // ---------------- Admin Main ----------------
 define('_MI_WGLINKS_NAME', 'wgLinks');
 define('_MI_WGLINKS_DESC', 'This module shows a block with registered links');
@@ -74,7 +77,7 @@ define('_MI_WGLINKS_INDEXSTYLE', 'Index style');
 define('_MI_WGLINKS_INDEXSTYLE_DESC', 'Please define in which style the links should be shown on the module index page');
 define('_MI_WGLINKS_TITLESTYLE', 'Title style');
 define('_MI_WGLINKS_TITLESTYLE_DESC', 'Please define in which style the titles of the detail infos should be shown on the user page');
-define('_MI_WGLINKS_TITLESTYLE', 'as Text');
-define('_MI_WGLINKS_TITLESTYLE', 'as glyphicons');
+define('_MI_WGLINKS_TITLESTYLE_TEXT', 'as Text');
+define('_MI_WGLINKS_TITLESTYLE_GLYPH', 'as glyphicons');
 define('_MI_WGLINKS_MAINTAINEDBY', ' is maintained by ');
 // ---------------- End ----------------

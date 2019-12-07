@@ -20,15 +20,15 @@
  * @author         XOOPS on Wedega - Email:<info@email.com> - Website:<http://xoops.org>
  * @version        $Id: 1.0 footer.php 13070 Wed 2016-03-23 10:31:46Z XOOPS Development Team $
  */
-if(count($xoBreadcrumbs) > 0 && $wglinks->getConfig('show_breadcrumbs')) {
+if(count($xoBreadcrumbs) > 0 && $helper->getConfig('show_breadcrumbs')) {
 	$GLOBALS['xoopsTpl']->assign('xoBreadcrumbs', $xoBreadcrumbs);
 }
-$GLOBALS['xoopsTpl']->assign('adv', $wglinks->getConfig('advertise'));
+$GLOBALS['xoopsTpl']->assign('adv', $helper->getConfig('advertise'));
 // 
-$GLOBALS['xoopsTpl']->assign('bookmarks', $wglinks->getConfig('bookmarks'));
-$GLOBALS['xoopsTpl']->assign('fbcomments', $wglinks->getConfig('fbcomments'));
+$GLOBALS['xoopsTpl']->assign('bookmarks', $helper->getConfig('bookmarks'));
+$GLOBALS['xoopsTpl']->assign('fbcomments', $helper->getConfig('fbcomments'));
 //
-if ( $wglinks->getConfig('show_copyright') ) {
+if ( $helper->getConfig('show_copyright') ) {
     $GLOBALS['xoopsTpl']->assign('copyright', $copyright);
 }
 // 

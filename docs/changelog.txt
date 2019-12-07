@@ -1,3 +1,9 @@
+<h5>1.07 Beta 1  NOT RELEASED</h5>  [2019/../..]
+<hr>
+ - added namespaces (goffy)
+ - added sample data (goffy)
+ - updated usage module admin to xmf\admin (goffy)
+
 <h5>1.05 Beta 1  NOT RELEASED</h5>  [2019/../..]
 <hr>
  - added new fields link_contact, link_phone, link_address, link_detail, link_img, link_email (goffy)

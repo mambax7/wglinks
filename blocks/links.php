@@ -37,7 +37,7 @@ function b_wglinks_links_show($options)
     $logoHeight  = $options[4];
     $blockStyle  = $options[5];
     $showMore    = $options[6];
-    $wglinks = WglinksHelper::getInstance();
+    $wglinks = \XoopsModules\Wglinks\Helper::getInstance();
     if (0 < $logoHeight) {
         $GLOBALS['xoopsTpl']->assign('imgheight', $logoHeight . 'px');
     }
@@ -49,8 +49,8 @@ function b_wglinks_links_show($options)
     array_shift($options);
     array_shift($options);
     array_shift($options);
-    $crLinks = new CriteriaCompo();
-	$crLinks->add(new Criteria('link_state', 1));
+    $crLinks = new \CriteriaCompo();
+	$crLinks->add(new \Criteria('link_state', 1));
     switch ( $sortby ) {
         case 'date_asc':
             $crLinks->setSort('link_date');
@@ -71,7 +71,7 @@ function b_wglinks_links_show($options)
     }
     $cat_ids = implode(',', $options);
     if ( '0' !== substr($cat_ids, 0, 1)) {
-        $crLinks->add(new Criteria('link_catid', '(' . $cat_ids . ')', 'IN'));
+        $crLinks->add(new \Criteria('link_catid', '(' . $cat_ids . ')', 'IN'));
     }
     if ($limit > 0) {
         $crLinks->setLimit($limit);
@@ -95,7 +95,7 @@ function b_wglinks_links_show($options)
 function b_wglinks_links_edit($options)
 {
     include_once XOOPS_ROOT_PATH.'/modules/wglinks/class/links.php';
-    $wglinks = WglinksHelper::getInstance();
+    $wglinks = \XoopsModules\Wglinks\Helper::getInstance();
     $categoriesHandler = $wglinks->getHandler('categories');
     $GLOBALS['xoopsTpl']->assign('wglinks_upload_url', WGLINKS_UPLOAD_URL);
 
@@ -135,7 +135,7 @@ function b_wglinks_links_edit($options)
     array_shift($options);
     array_shift($options);
 
-    $crCats = new CriteriaCompo();
+    $crCats = new \CriteriaCompo();
     $crCats->setSort('cat_weight ASC, cat_id');
     $crCats->setOrder('ASC');
     $categoriesAll = $categoriesHandler->getAll($crCats);

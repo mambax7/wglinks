@@ -20,20 +20,23 @@
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 categories.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
  */
+
+use Xmf\Request;
+
 include __DIR__ . '/header.php';
 // It recovered the value of argument op in URL$
-$op = XoopsRequest::getString('op', 'list');
+$op = Request::getString('op', 'list');
 // Request cat_id
-$catId = XoopsRequest::getInt('cat_id');
+$catId = Request::getInt('cat_id');
 switch($op) {
 	case 'list':
 	default:
-		$start = XoopsRequest::getInt('start', 0);
-		$limit = XoopsRequest::getInt('limit', $wglinks->getConfig('adminpager'));
+		$start = Request::getInt('start', 0);
+		$limit = Request::getInt('limit', $helper->getConfig('adminpager'));
 		$templateMain = 'wglinks_admin_categories.tpl';
-		$GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('categories.php'));
-		$adminMenu->addItemButton(_AM_WGLINKS_ADD_CAT, 'categories.php?op=new', 'add');
-		$GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('categories.php'));
+		$adminObject->addItemButton(_AM_WGLINKS_ADD_CAT, 'categories.php?op=new', 'add');
+		$GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
 		$categoriesCount = $categoriesHandler->getCountCategories();
 		$categoriesAll = $categoriesHandler->getAllCategories($start, $limit);
 		$GLOBALS['xoopsTpl']->assign('categories_count', $categoriesCount);
@@ -49,7 +52,7 @@ switch($op) {
 			// Display Navigation
 			if($categoriesCount > $limit) {
 				include_once XOOPS_ROOT_PATH .'/class/pagenav.php';
-				$pagenav = new XoopsPageNav($categoriesCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
+				$pagenav = new \XoopsPageNav($categoriesCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
 				$GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
 			}
 		} else {
@@ -59,9 +62,9 @@ switch($op) {
 	break;
 	case 'new':
 		$templateMain = 'wglinks_admin_categories.tpl';
-		$GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('categories.php'));
-		$adminMenu->addItemButton(_AM_WGLINKS_CATS_LIST, 'categories.php', 'list');
-		$GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
+		$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('categories.php'));
+		$adminObject->addItemButton(_AM_WGLINKS_CATS_LIST, 'categories.php', 'list');
+		$GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
 		// Get Form
 		$categoriesObj = $categoriesHandler->create();
 		$form = $categoriesObj->getFormCategories();
@@ -96,10 +99,10 @@ switch($op) {
 	break;
 	case 'edit':
 		$templateMain = 'wglinks_admin_categories.tpl';
-		$GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('categories.php'));
-		$adminMenu->addItemButton(_AM_WGLINKS_ADD_CAT, 'categories.php?op=new', 'add');
-		$adminMenu->addItemButton(_AM_WGLINKS_CATS_LIST, 'categories.php', 'list');
-		$GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
+		$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('categories.php'));
+		$adminObject->addItemButton(_AM_WGLINKS_ADD_CAT, 'categories.php?op=new', 'add');
+		$adminObject->addItemButton(_AM_WGLINKS_CATS_LIST, 'categories.php', 'list');
+		$GLOBALS['xoopsTpl']->assign('buttons', $adminObject->displayButton('left'));
 		// Get Form
 		$categoriesObj = $categoriesHandler->get($catId);
 		$form = $categoriesObj->getFormCategories();

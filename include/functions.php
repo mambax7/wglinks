@@ -77,7 +77,7 @@ function wglinksMetaDescription($content)
 function wglinks_RewriteUrl($module, $array, $type = 'content')
 {
     $comment = '';
-    $wglinks = WglinksHelper::getInstance();
+    $wglinks = \XoopsModules\Wglinks\Helper::getInstance();
     $lenght_id = $wglinks->getConfig('lenght_id');
     $rewrite_url = $wglinks->getConfig('rewrite_url');
 
@@ -170,7 +170,7 @@ function wglinks_RewriteUrl($module, $array, $type = 'content')
 function wglinks_Filter($url, $type = '', $module = 'wglinks') {
 
     // Get regular expression from module setting. default setting is : `[^a-z0-9]`i
-    $wglinks = WglinksHelper::getInstance();
+    $wglinks = \XoopsModules\Wglinks\Helper::getInstance();
     $regular_expression = $wglinks->getConfig('regular_expression');
 
     $url = strip_tags($url);

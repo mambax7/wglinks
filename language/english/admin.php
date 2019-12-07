@@ -20,6 +20,9 @@
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 admin.php 13070 Sun 2016-03-20 15:20:15Z XOOPS Development Team $
  */
+
+require_once __DIR__ . '/common.php';
+
 // ---------------- Admin Index ----------------
 define('_AM_WGLINKS_STATISTICS', 'Statistics');
 // There are

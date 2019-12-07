@@ -20,6 +20,9 @@
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 modinfo.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
  */
+
+require_once __DIR__ . '/common.php';
+
 // ---------------- Admin Main ----------------
 define('_MI_WGLINKS_NAME', 'wgLinks');
 define('_MI_WGLINKS_DESC', 'Dieses Modul zeigt eine Ansicht der erfassten Links');

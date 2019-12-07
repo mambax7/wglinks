@@ -20,12 +20,14 @@
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 xoops_version.php 13070 Sun 2016-03-20 15:20:15Z XOOPS Development Team $
  */
-
 // 
-$moduleDirName  = basename(__DIR__);
+
+$moduleDirName      = basename(__DIR__);
+$moduleDirNameUpper = mb_strtoupper($moduleDirName);
+
 // ------------------- Informations ------------------- //
 $modversion['name'] = _MI_WGLINKS_NAME;
-$modversion['version'] = '1.06';
+$modversion['version'] = '1.07';
 $modversion['description'] = _MI_WGLINKS_DESC;
 $modversion['author'] = 'XOOPS on Wedega';
 $modversion['author_mail'] = 'webmaster@wedega.com';
@@ -66,6 +68,7 @@ $modversion['adminindex'] = 'admin/index.php';
 $modversion['adminmenu'] = 'admin/menu.php';
 $modversion['onInstall'] = 'include/install.php';
 $modversion['onUpdate'] = 'include/update.php';
+$modversion['onUninstall'] = 'include/onuninstall.php';
 // ------------------- Templates ------------------- //
 // Admin
 $modversion['templates'][] = array('file' => 'wglinks_admin_about.tpl', 'description' => '', 'type' => 'admin');
@@ -87,6 +90,7 @@ $modversion['templates'][] = array('file' => 'wglinks_footer.tpl', 'description'
 $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
 // Tables
 $modversion['tables'][1] = 'wglinks_links';
+$modversion['tables'][2] = 'wglinks_categories';
 // ------------------- Blocks ------------------- //
 // Blocks
 $modversion['blocks'][] = [
@@ -329,3 +333,26 @@ $modversion['config'][] = [
     'default'     => 'text',
     'options'    => array(_MI_WGLINKS_TITLESTYLE_TEXT => 'text', _MI_WGLINKS_TITLESTYLE_GLYPH => 'glyphicons'),
 ];
+/**
+ * Make Sample button visible?
+ */
+$modversion['config'][] = [
+    'name'        => 'displaySampleButton',
+    'title'       => 'CO_' . $moduleDirNameUpper . '_' . 'SHOW_SAMPLE_BUTTON',
+    'description' => 'CO_' . $moduleDirNameUpper . '_' . 'SHOW_SAMPLE_BUTTON_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+];
+
+/**
+ * Show Developer Tools?
+ */
+/* $modversion['config'][] = [
+    'name'        => 'displayDeveloperTools',
+    'title'       => 'CO_' . $moduleDirNameUpper . '_' . 'SHOW_DEV_TOOLS',
+    'description' => 'CO_' . $moduleDirNameUpper . '_' . 'SHOW_DEV_TOOLS_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0,
+]; */
