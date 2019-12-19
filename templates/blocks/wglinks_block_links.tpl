@@ -5,6 +5,6 @@
         <{include file='db:wglinks_block_links_default.tpl' link=$link}>
     <{/if}>
     <{if $showMore}>
-        <div class="center"><a class="btn btn-primary" href="<{$wglinks_url}>" title="<{$smarty.const._MA_WGLINKS_SHOW_MORE}>" target="_self"><{$smarty.const._MA_WGLINKS_SHOW_MORE}></a></div>
+        <div class="wglinks-block-more"><a class="btn btn-primary wg-color1" href="<{$wglinks_url}>" title="<{$smarty.const._MA_WGLINKS_SHOW_MORE}>" target="_self"><{$smarty.const._MA_WGLINKS_SHOW_MORE}></a></div>
     <{/if}>
 <{/if}>

@@ -78,7 +78,7 @@
             <{/if}>
         <{/if}>
     </div>
-    <{if ($index_style == '2cards' && $smarty.foreach.link.iteration % 2 == 0) || ($index_style == '3cards' && $smarty.foreach.link.iteration % 3 == 0) || ($index_style == '4cards' && $smarty.foreach.link.iteration % 4 == 0) || ($index_style == '6cards' && $smarty.foreach.link.iteration % 6 == 0)}>
-        <div class="clear"></div>
-    <{/if}>
 </div>
+<{if ($index_style == '2cards' && $smarty.foreach.link.iteration % 2 == 0) || ($index_style == '3cards' && $smarty.foreach.link.iteration % 3 == 0) || ($index_style == '4cards' && $smarty.foreach.link.iteration % 4 == 0) || ($index_style == '6cards' && $smarty.foreach.link.iteration % 6 == 0)}>
+    <div class="clear"></div>
+<{/if}>

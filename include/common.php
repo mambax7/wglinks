@@ -45,6 +45,6 @@ if (!defined('WGLINKS_MODULE_PATH')) {
 $copyright = "<a href='http://xoops.wedega.com' title='XOOPS on Wedega' target='_blank'>
                      <img src='" . WGLINKS_IMAGE_URL . "/wedega_logo.png' alt='XOOPS on Wedega' /></a>";
 
-include_once XOOPS_ROOT_PATH.'/class/xoopsrequest.php';
-include_once WGLINKS_PATH.'/class/helper.php';
+// include_once XOOPS_ROOT_PATH.'/class/xoopsrequest.php';
+include_once WGLINKS_PATH.'/class/Helper.php';
 include_once WGLINKS_PATH.'/include/functions.php';

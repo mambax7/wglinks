@@ -39,9 +39,9 @@ $GLOBALS['xoTheme']->addStylesheet( $style, null );
 $GLOBALS['xoopsTpl']->assign('xoops_icons32_url', XOOPS_ICONS32_URL);
 $GLOBALS['xoopsTpl']->assign('wglinks_url', WGLINKS_URL);
 $GLOBALS['xoopsTpl']->assign('index_header', $helper->getConfig('index_header'));
-$GLOBALS['xoopsTpl']->assign('index_info', $helper->getConfig('index_info'));
-$GLOBALS['xoopsTpl']->assign('index_style', $helper->getConfig('index_style'));
-$GLOBALS['xoopsTpl']->assign('title_style', $helper->getConfig('title_style'));
+$GLOBALS['xoopsTpl']->assign('index_info',   $helper->getConfig('index_info'));
+$GLOBALS['xoopsTpl']->assign('index_style',  $helper->getConfig('index_style'));
+$GLOBALS['xoopsTpl']->assign('title_style',  $helper->getConfig('title_style'));
 $GLOBALS['xoopsTpl']->assign('admin', WGLINKS_URL . '/admin/index.php');
 
 // 
@@ -59,7 +59,7 @@ $crLinks->setLimit( $limit );
 $crLinks->setSort('link_catid ASC, link_weight ASC, link_id');
 $crLinks->setOrder('ASC');
 $linksCount = $linksHandler->getCount($crLinks);
-$count    = 1;
+
 $keywords = [];
 $links    = [];
 

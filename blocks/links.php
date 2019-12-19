@@ -24,7 +24,7 @@ include_once XOOPS_ROOT_PATH.'/modules/wglinks/include/common.php';
 // Function show block
 function b_wglinks_links_show($options)
 {
-    include_once XOOPS_ROOT_PATH.'/modules/wglinks/class/links.php';
+    include_once XOOPS_ROOT_PATH.'/modules/wglinks/class/Links.php';
     $myts = MyTextSanitizer::getInstance();
     $GLOBALS['xoopsTpl']->assign('wglinks_upload_url', WGLINKS_UPLOAD_URL);
     $GLOBALS['xoopsTpl']->assign('wglinks_url', WGLINKS_URL);
@@ -94,7 +94,7 @@ function b_wglinks_links_show($options)
 // Function edit block
 function b_wglinks_links_edit($options)
 {
-    include_once XOOPS_ROOT_PATH.'/modules/wglinks/class/links.php';
+    include_once XOOPS_ROOT_PATH.'/modules/wglinks/class/Links.php';
     $wglinks = \XoopsModules\Wglinks\Helper::getInstance();
     $categoriesHandler = $wglinks->getHandler('categories');
     $GLOBALS['xoopsTpl']->assign('wglinks_upload_url', WGLINKS_UPLOAD_URL);
