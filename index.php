@@ -30,6 +30,7 @@ include_once XOOPS_ROOT_PATH .'/header.php';
 $op        = Request::getString('op', 'list');
 $linkId    = Request::getInt('link_id');
 $linkCatId = Request::getInt('link_catid');
+$catIds    = Request::getString('cat_ids', '0');
 $start     = Request::getInt('start', 0);
 $limit     = Request::getInt('limit', $helper->getConfig('userpager'));
 
@@ -44,7 +45,6 @@ $GLOBALS['xoopsTpl']->assign('index_style',  $helper->getConfig('index_style'));
 $GLOBALS['xoopsTpl']->assign('title_style',  $helper->getConfig('title_style'));
 $GLOBALS['xoopsTpl']->assign('admin', WGLINKS_URL . '/admin/index.php');
 
-// 
 $crLinks = new \CriteriaCompo();
 $crLinks->add(new \Criteria('link_state', 1));
 if ( 0 < $linkId ) {
@@ -53,6 +53,9 @@ if ( 0 < $linkId ) {
 }
 if ( 0 < $linkCatId ) {
     $crLinks->add(new \Criteria('link_catid', $linkCatId));
+}
+if ( '0' !== substr($catIds, 0, 1)) {
+    $crLinks->add(new \Criteria('link_catid', '(' . $catIds . ')', 'IN'));
 }
 $crLinks->setStart( $start );
 $crLinks->setLimit( $limit );

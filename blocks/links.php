@@ -72,6 +72,7 @@ function b_wglinks_links_show($options)
     $cat_ids = implode(',', $options);
     if ( '0' !== substr($cat_ids, 0, 1)) {
         $crLinks->add(new \Criteria('link_catid', '(' . $cat_ids . ')', 'IN'));
+        $GLOBALS['xoopsTpl']->assign('cat_ids', $cat_ids);
     }
     if ($limit > 0) {
         $crLinks->setLimit($limit);
