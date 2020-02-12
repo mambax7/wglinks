@@ -1,3 +1,7 @@
+<h5>1.07 RC 1  NOT RELEASED</h5>  [2019/../..]
+<hr>
+ - fixed bug for sorting by date in blocks (goffy)
+ 
 <h5>1.07 Beta 1  NOT RELEASED</h5>  [2019/../..]
 <hr>
  - added namespaces (goffy)

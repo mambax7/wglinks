@@ -53,11 +53,11 @@ function b_wglinks_links_show($options)
 	$crLinks->add(new \Criteria('link_state', 1));
     switch ( $sortby ) {
         case 'date_asc':
-            $crLinks->setSort('link_date');
+            $crLinks->setSort('link_date_created');
             $crLinks->setOrder('ASC');
         break;
 		case 'date_desc':
-            $crLinks->setSort('link_date');
+            $crLinks->setSort('link_date_created');
             $crLinks->setOrder('DESC');
         break;
         case 'random':
