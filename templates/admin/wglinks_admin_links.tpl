@@ -1,7 +1,7 @@
 <!-- Header -->
 <{include file='db:wglinks_admin_header.tpl'}>
 
-<{if $links_list}>
+<{if $links_list|default:false}>
 	<table class='table table-bordered' id='sortable'>
         <thead>
             <tr class="head">
@@ -22,35 +22,35 @@
                 <th class="center width5"><{$smarty.const._AM_WGLINKS_FORM_ACTION}></th>
             </tr>
         </thead>
-        <{if $links_count}>
+        <{if $links_count|default:0}>
             <!-- <tbody id="links-list"> -->
+            <tbody>
                 <{foreach item=link from=$links_list}>
-                    <{if $link.new_cat > 0}> 
-                    <tbody>
+                    <{if $link.new_cat|default:0 > 0}>
                         <tr class="odd">
-                        <td class="left" colspan="16"><{$link.catname}></td>
+                            <td class="left" colspan="16"><{$link.catname|default:''}></td>
                         </tr>
                     <{/if}>
                     <tr class="<{cycle values="odd, even"}>"  id="lorder_<{$link.id}>">
                         <td class="center"><img src="<{$wglinks_url}>/assets/icons/16/up_down.png" alt="drag&drop" class="icon-sortable"/></td>
                         <td class='center'><{$link.id}></td>
-                        <td class="center"><{$link.name}></td>
-                        <td class="center"><{$link.tooltip}></td>
-                        <td class="center"><{$link.detail_truncated}></td>
-                        <td class="center"><{$link.url}></td>
-                        <td class="center"><{$link.contact}></td>
-                        <td class="center"><{$link.email}></td>
-                        <td class="center"><{$link.phone}></td>
-                        <td class="center"><{$link.address}></td>
+                        <td class="center"><{$link.name|default:''}></td>
+                        <td class="center"><{$link.tooltip|default:''}></td>
+                        <td class="center"><{$link.detail_truncated|default:''}></td>
+                        <td class="center"><{$link.url|default:''}></td>
+                        <td class="center"><{$link.contact|default:''}></td>
+                        <td class="center"><{$link.email|default:''}></td>
+                        <td class="center"><{$link.phone|default:''}></td>
+                        <td class="center"><{$link.address|default:''}></td>
                        
-                        <td class="center"><img src="<{$wglinks_upload_url}>/images/links/thumbs/<{$link.logo}>" alt="<{$link.name}>" style="height:50px" /></td>
+                        <td class="center"><img src="<{$wglinks_upload_url}>/images/links/thumbs/<{$link.logo|default:''}>" alt="<{$link.name|default:''}>" style="height:50px" /></td>
                         <td class="center">
-                            <{if $link.state == 0}>
+                            <{if $link.state|default:0 == 0}>
                                 <a href='links.php?op=change_state&amp;link_state=1&amp;link_id=<{$link.id}>&amp;start=<{$start}>&amp;limit=<{$limit}>' title='<{$smarty.const._AM_WGLINKS_STATE_ONLINE}>'>
                                     <img src='<{$wglinks_url}>/assets/icons/16/state0.png' alt='<{$smarty.const._AM_WGLINKS_STATE_ONLINE}>' />
                                 </a>
                             <{/if}>
-                            <{if $link.state == 1}>
+                            <{if $link.state|default:0 == 1}>
                                 <a href='links.php?op=change_state&amp;link_state=0&amp;link_id=<{$link.id}>&amp;start=<{$start}>&amp;limit=<{$limit}>' title='<{$smarty.const._AM_WGLINKS_STATE_OFFLINE}>'>
                                     <img src='<{$wglinks_url}>/assets/icons/16/state1.png' alt='<{$smarty.const._AM_WGLINKS_STATE_OFFLINE}>' />
                                 </a>
@@ -69,16 +69,16 @@
     </table>
 
     <div class="clear">&nbsp;</div>
-    <{if $pagenav}>
+    <{if $pagenav|default:false}>
         <div class="xo-pagenav floatright"><{$pagenav}></div><div class="clear spacer"></div>
     <{/if}>
 <{/if}>
 
-<{if $form}>
+<{if $form|default:false}>
 	<{$form}>
 <{/if}>
 
-<{if $error}>
+<{if $error|default:false}>
 	<div class="errorMsg"><strong><{$error}></strong></div>
 <{/if}>
 
