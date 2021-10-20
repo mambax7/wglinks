@@ -20,7 +20,7 @@
  * @author         XOOPS on Wedega - Email:<info@email.com> - Website:<http://xoops.org>
  * @version        $Id: 1.0 header.php 13070 Wed 2016-03-23 10:31:46Z XOOPS Development Team $
  */
-include dirname(dirname(__DIR__)) .'/mainfile.php';
+include dirname(__DIR__, 2) . '/mainfile.php';
 include __DIR__ .'/include/common.php';
 $dirname  = basename(__DIR__);
 
