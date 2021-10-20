@@ -146,7 +146,7 @@ class Links extends \XoopsObject
 		$imageSelect = new \XoopsFormSelect( sprintf(_AM_WGLINKS_FORM_IMAGE_PATH, ".{$imageDirectory}/"), 'link_logo', $linkLogo, 5);
 		$imageArray = \XoopsLists::getImgListAsArray( XOOPS_ROOT_PATH . $imageDirectory );
 		foreach($imageArray as $image1) {
-			$imageSelect->addOption("{$image1}", $image1);
+			$imageSelect->addOption((string)($image1), $image1);
 		}
 		$imageSelect->setExtra("onchange='showImgSelected(\"image1\", \"link_logo\", \"".$imageDirectory."\", \"\", \"".XOOPS_URL."\")'");
 		$imageTray->addElement($imageSelect, false);
