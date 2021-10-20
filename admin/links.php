@@ -110,7 +110,7 @@ switch($op) {
         if (strlen($fileName) > 0) {
             $imageMimetype = $_FILES['attachedfile']['type'];
             include_once XOOPS_ROOT_PATH .'/class/uploader.php';
-            $uploader = new \XoopsMediaUploader(WGLINKS_UPLOAD_IMAGE_PATH . "/links/large/", $helper->getConfig('mimetypes'), $helper->getConfig('maxsize'), null, null);
+            $uploader = new \XoopsMediaUploader(WGLINKS_UPLOAD_IMAGE_PATH . '/links/large/', $helper->getConfig('mimetypes'), $helper->getConfig('maxsize'), null, null);
             if($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
                 $extension = preg_replace('/^.+\.([^.]+)$/sU', '', $fileName);
                 $imgName = str_replace(' ', '', $_POST['link_name']) . '.' . $extension;

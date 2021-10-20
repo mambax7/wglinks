@@ -62,8 +62,8 @@ function update_wglinks_v10($module)
 {
     global $xoopsDB;
     $result = $xoopsDB->query(
-        "SELECT t1.tpl_id FROM " . $xoopsDB->prefix('tplfile') . " t1, " . $xoopsDB->prefix('tplfile')
-        . " t2 WHERE t1.tpl_refid = t2.tpl_refid AND t1.tpl_module = t2.tpl_module AND t1.tpl_tplset=t2.tpl_tplset AND t1.tpl_file = t2.tpl_file AND t1.tpl_type = t2.tpl_type AND t1.tpl_id > t2.tpl_id"
+        'SELECT t1.tpl_id FROM ' . $xoopsDB->prefix('tplfile') . ' t1, ' . $xoopsDB->prefix('tplfile')
+        . ' t2 WHERE t1.tpl_refid = t2.tpl_refid AND t1.tpl_module = t2.tpl_module AND t1.tpl_tplset=t2.tpl_tplset AND t1.tpl_file = t2.tpl_file AND t1.tpl_type = t2.tpl_type AND t1.tpl_id > t2.tpl_id'
     );
     $tplids = [];
     while (list($tplid) = $xoopsDB->fetchRow($result)) {
@@ -72,7 +72,7 @@ function update_wglinks_v10($module)
     if (count($tplids) > 0) {
         $tplfile_handler = xoops_getHandler('tplfile');
         $duplicate_files = $tplfile_handler->getObjects(
-            new \Criteria('tpl_id', "(" . implode(',', $tplids) . ")", "IN")
+            new \Criteria('tpl_id', '(' . implode(',', $tplids) . ')', 'IN')
         );
 
         if (count($duplicate_files) > 0) {
@@ -81,7 +81,7 @@ function update_wglinks_v10($module)
             }
         }
     }
-    $sql = "SHOW INDEX FROM " . $xoopsDB->prefix('tplfile') . " WHERE KEY_NAME = 'tpl_refid_module_set_file_type'";
+    $sql = 'SHOW INDEX FROM ' . $xoopsDB->prefix('tplfile') . " WHERE KEY_NAME = 'tpl_refid_module_set_file_type'";
     if (!$result = $xoopsDB->queryF($sql)) {
         xoops_error($xoopsDB->error() . '<br />' . $sql);
 
@@ -98,8 +98,8 @@ function update_wglinks_v10($module)
 
         return true;
     }
-    $sql = "ALTER TABLE " . $xoopsDB->prefix('tplfile')
-        . " ADD UNIQUE tpl_refid_module_set_file_type ( tpl_refid, tpl_module, tpl_tplset, tpl_file, tpl_type )";
+    $sql = 'ALTER TABLE ' . $xoopsDB->prefix('tplfile')
+           . ' ADD UNIQUE tpl_refid_module_set_file_type ( tpl_refid, tpl_module, tpl_tplset, tpl_file, tpl_type )';
     if (!$result = $xoopsDB->queryF($sql)) {
         xoops_error($xoopsDB->error() . '<br />' . $sql);
         $module->setErrors(
@@ -138,7 +138,7 @@ function update_wglinks_v105 ($module) {
     
     // update table links
     $field = 'link_detail';
-    $sql = "ALTER TABLE " . $xoopsDB->prefix('wglinks_links') . " ADD `$field` text NULL AFTER `link_tooltip`";
+    $sql = 'ALTER TABLE ' . $xoopsDB->prefix('wglinks_links') . " ADD `$field` text NULL AFTER `link_tooltip`";
     if (!$result = $xoopsDB->queryF($sql)) {
         xoops_error($xoopsDB->error() . '<br />' . $sql);
         $module->setErrors(
@@ -147,7 +147,7 @@ function update_wglinks_v105 ($module) {
         return false;
     }
     $field = 'link_address';
-    $sql = "ALTER TABLE " . $xoopsDB->prefix('wglinks_links') . " ADD `$field` varchar(255) NULL DEFAULT '' AFTER `link_tooltip`";
+    $sql = 'ALTER TABLE ' . $xoopsDB->prefix('wglinks_links') . " ADD `$field` varchar(255) NULL DEFAULT '' AFTER `link_tooltip`";
     if (!$result = $xoopsDB->queryF($sql)) {
         xoops_error($xoopsDB->error() . '<br />' . $sql);
         $module->setErrors(
@@ -156,7 +156,7 @@ function update_wglinks_v105 ($module) {
         return false;
     }
     $field = 'link_phone';
-    $sql = "ALTER TABLE " . $xoopsDB->prefix('wglinks_links') . " ADD `$field` varchar(255) NULL DEFAULT '' AFTER `link_tooltip`";
+    $sql = 'ALTER TABLE ' . $xoopsDB->prefix('wglinks_links') . " ADD `$field` varchar(255) NULL DEFAULT '' AFTER `link_tooltip`";
     if (!$result = $xoopsDB->queryF($sql)) {
         xoops_error($xoopsDB->error() . '<br />' . $sql);
         $module->setErrors(
@@ -165,7 +165,7 @@ function update_wglinks_v105 ($module) {
         return false;
     }
     $field = 'link_email';
-    $sql = "ALTER TABLE " . $xoopsDB->prefix('wglinks_links') . " ADD `$field` text NULL AFTER `link_tooltip`";
+    $sql = 'ALTER TABLE ' . $xoopsDB->prefix('wglinks_links') . " ADD `$field` text NULL AFTER `link_tooltip`";
     if (!$result = $xoopsDB->queryF($sql)) {
         xoops_error($xoopsDB->error() . '<br />' . $sql);
         $module->setErrors(
@@ -174,7 +174,7 @@ function update_wglinks_v105 ($module) {
         return false;
     }
     $field = 'link_contact';
-    $sql = "ALTER TABLE " . $xoopsDB->prefix('wglinks_links') . " ADD `$field` varchar(255) NULL DEFAULT '' AFTER `link_tooltip`";
+    $sql = 'ALTER TABLE ' . $xoopsDB->prefix('wglinks_links') . " ADD `$field` varchar(255) NULL DEFAULT '' AFTER `link_tooltip`";
     if (!$result = $xoopsDB->queryF($sql)) {
         xoops_error($xoopsDB->error() . '<br />' . $sql);
         $module->setErrors(
@@ -223,7 +223,7 @@ function update_wglinks_v103 ($module) {
     copy($blankFile, $categories.'/blank.gif');
     
     // update table links
-    $sql = "ALTER TABLE " . $xoopsDB->prefix('wglinks_links') . " ADD `link_state` INT(10) NOT NULL DEFAULT '0' AFTER `link_logo`";
+    $sql = 'ALTER TABLE ' . $xoopsDB->prefix('wglinks_links') . " ADD `link_state` INT(10) NOT NULL DEFAULT '0' AFTER `link_logo`";
     if (!$result = $xoopsDB->queryF($sql)) {
         xoops_error($xoopsDB->error() . '<br />' . $sql);
         $module->setErrors(
@@ -233,7 +233,7 @@ function update_wglinks_v103 ($module) {
     }
     
     // update table links
-    $sql = "ALTER TABLE " . $xoopsDB->prefix('wglinks_links') . " ADD `link_catid` INT(10) NOT NULL DEFAULT '0' AFTER `link_id`";
+    $sql = 'ALTER TABLE ' . $xoopsDB->prefix('wglinks_links') . " ADD `link_catid` INT(10) NOT NULL DEFAULT '0' AFTER `link_id`";
     if (!$result = $xoopsDB->queryF($sql)) {
         xoops_error($xoopsDB->error() . '<br />' . $sql);
         $module->setErrors(
@@ -243,7 +243,7 @@ function update_wglinks_v103 ($module) {
     }
     
     // create table
-    $sql = "CREATE TABLE " . $xoopsDB->prefix('wglinks_categories') . " (
+    $sql = 'CREATE TABLE ' . $xoopsDB->prefix('wglinks_categories') . " (
               `cat_id` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
               `cat_name` VARCHAR(100) NOT NULL DEFAULT '',
               `cat_desc` TEXT NULL,

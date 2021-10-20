@@ -150,7 +150,7 @@ class Links extends \XoopsObject
 		}
 		$imageSelect->setExtra("onchange='showImgSelected(\"image1\", \"link_logo\", \"".$imageDirectory."\", \"\", \"".XOOPS_URL."\")'");
 		$imageTray->addElement($imageSelect, false);
-		$imageTray->addElement(new \XoopsFormLabel('', "<br /><img src='".XOOPS_URL."/".$imageDirectory."/".$linkLogo."' name='image1' id='image1' alt='' style='max-width:100px' />"));
+		$imageTray->addElement(new \XoopsFormLabel('', "<br /><img src='".XOOPS_URL . '/' . $imageDirectory . '/' . $linkLogo . "' name='image1' id='image1' alt='' style='max-width:100px' />"));
         // Form File
 		$fileSelectTray = new \XoopsFormElementTray('', '<br />' );
         $uploadFileInfo = str_replace( '%w', $helper->getConfig('maxwidth'), _AM_WGLINKS_FORM_UPLOAD_IMAGE_LINKS );
