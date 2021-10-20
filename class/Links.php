@@ -218,7 +218,7 @@ class Links extends \XoopsObject
 		$ret['logo'] = 'blank.gif' === $this->getVar('link_logo') ? '' : $this->getVar('link_logo');
         $ret['state'] = $this->getVar('link_state');
 		$ret['submitter'] = \XoopsUser::getUnameFromId($this->getVar('link_submitter'));
-		$ret['date_created'] = formatTimeStamp($this->getVar('link_date_created'), 's');
+		$ret['date_created'] = formatTimestamp($this->getVar('link_date_created'), 's');
 		return $ret;
 	}
 

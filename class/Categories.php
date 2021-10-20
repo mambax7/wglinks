@@ -129,7 +129,7 @@ class Categories extends \XoopsObject
 		$ret['weight'] = $this->getVar('cat_weight');
 		$ret['logo'] = $this->getVar('cat_logo');
 		$ret['submitter'] = \XoopsUser::getUnameFromId($this->getVar('cat_submitter'));
-		$ret['date_created'] = formatTimeStamp($this->getVar('cat_date_created'), 's');
+		$ret['date_created'] = formatTimestamp($this->getVar('cat_date_created'), 's');
 		return $ret;
 	}
 
