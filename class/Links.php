@@ -23,7 +23,7 @@ namespace XoopsModules\Wglinks;
  * @author         XOOPS on Wedega - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 links.php 13070 Sun 2016-03-20 15:20:14Z XOOPS Development Team $
  */
-defined('XOOPS_ROOT_PATH') || die('Restricted access');
+\defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * Class Object WglinksLinks
@@ -43,21 +43,21 @@ class Links extends \XoopsObject
 	public function __construct()
 	{
 		$this->helper = \XoopsModules\Wglinks\Helper::getInstance();
-		$this->initVar('link_id', XOBJ_DTYPE_INT);
-        $this->initVar('link_catid', XOBJ_DTYPE_INT);
-		$this->initVar('link_name', XOBJ_DTYPE_TXTBOX);
-		$this->initVar('link_url', XOBJ_DTYPE_TXTBOX);
-		$this->initVar('link_tooltip', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('link_detail', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('link_contact', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('link_email', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('link_phone', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('link_address', XOBJ_DTYPE_TXTBOX);
-		$this->initVar('link_weight', XOBJ_DTYPE_INT);
-		$this->initVar('link_logo', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('link_state', XOBJ_DTYPE_INT);
-		$this->initVar('link_submitter', XOBJ_DTYPE_INT);
-		$this->initVar('link_date_created', XOBJ_DTYPE_INT);
+		$this->initVar('link_id', \XOBJ_DTYPE_INT);
+        $this->initVar('link_catid', \XOBJ_DTYPE_INT);
+		$this->initVar('link_name', \XOBJ_DTYPE_TXTBOX);
+		$this->initVar('link_url', \XOBJ_DTYPE_TXTBOX);
+		$this->initVar('link_tooltip', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('link_detail', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('link_contact', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('link_email', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('link_phone', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('link_address', \XOBJ_DTYPE_TXTBOX);
+		$this->initVar('link_weight', \XOBJ_DTYPE_INT);
+		$this->initVar('link_logo', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('link_state', \XOBJ_DTYPE_INT);
+		$this->initVar('link_submitter', \XOBJ_DTYPE_INT);
+		$this->initVar('link_date_created', \XOBJ_DTYPE_INT);
 	}
 
 	/**
@@ -95,9 +95,9 @@ class Links extends \XoopsObject
 			$action = $_SERVER['REQUEST_URI'];
 		}
 		// Title
-		$title = $this->isNew() ? sprintf(_AM_WGLINKS_LINK_ADD) : sprintf(_AM_WGLINKS_LINK_EDIT);
+		$title = $this->isNew() ? \sprintf(_AM_WGLINKS_LINK_ADD) : \sprintf(_AM_WGLINKS_LINK_EDIT);
 		// Get Theme Form
-		xoops_load('XoopsFormLoader');
+		\xoops_load('XoopsFormLoader');
 		$form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
 		$form->setExtra('enctype="multipart/form-data"');
         // Form Table categories
@@ -143,7 +143,7 @@ class Links extends \XoopsObject
 		$linkLogo = $getLinkLogo ?: 'blank.gif';
 		$imageDirectory = '/uploads/wglinks/images/links/large';
 		$imageTray = new \XoopsFormElementTray(_AM_WGLINKS_LINK_LOGO, '<br />' );
-		$imageSelect = new \XoopsFormSelect( sprintf(_AM_WGLINKS_FORM_IMAGE_PATH, ".{$imageDirectory}/"), 'link_logo', $linkLogo, 5);
+		$imageSelect = new \XoopsFormSelect(\sprintf(_AM_WGLINKS_FORM_IMAGE_PATH, ".{$imageDirectory}/"), 'link_logo', $linkLogo, 5);
 		$imageArray = \XoopsLists::getImgListAsArray( XOOPS_ROOT_PATH . $imageDirectory );
 		foreach($imageArray as $image1) {
 			$imageSelect->addOption((string)($image1), $image1);
@@ -153,9 +153,9 @@ class Links extends \XoopsObject
 		$imageTray->addElement(new \XoopsFormLabel('', "<br /><img src='".XOOPS_URL . '/' . $imageDirectory . '/' . $linkLogo . "' name='image1' id='image1' alt='' style='max-width:100px' />"));
         // Form File
 		$fileSelectTray = new \XoopsFormElementTray('', '<br />' );
-        $uploadFileInfo = str_replace( '%w', $helper->getConfig('maxwidth'), _AM_WGLINKS_FORM_UPLOAD_IMAGE_LINKS );
-        $uploadFileInfo = str_replace( '%h', $helper->getConfig('maxheight'), $uploadFileInfo );
-        $uploadFileInfo = str_replace( '%b', $helper->getConfig('maxsize'), $uploadFileInfo );
+        $uploadFileInfo = \str_replace('%w', $helper->getConfig('maxwidth'), _AM_WGLINKS_FORM_UPLOAD_IMAGE_LINKS );
+        $uploadFileInfo = \str_replace('%h', $helper->getConfig('maxheight'), $uploadFileInfo );
+        $uploadFileInfo = \str_replace('%b', $helper->getConfig('maxsize'), $uploadFileInfo );
 		$fileSelectTray->addElement(new \XoopsFormFile( $uploadFileInfo, 'attachedfile', $helper->getConfig('maxsize') ));
 		$fileSelectTray->addElement(new \XoopsFormLabel(''));
 		$imageTray->addElement($fileSelectTray);
@@ -200,11 +200,11 @@ class Links extends \XoopsObject
 		$ret['name'] = $this->getVar('link_name');
 		if ( 'http://' !== $this->getVar('link_url') && 'https://' !== $this->getVar('link_url') ) {
 			$ret['url'] = $this->getVar('link_url');
-            if ( substr($this->getVar('link_url'), 0, 5) == 'http:') {
-                $ret['url_text'] = substr($this->getVar('link_url'), 7);
+            if (\substr($this->getVar('link_url'), 0, 5) == 'http:') {
+                $ret['url_text'] = \substr($this->getVar('link_url'), 7);
             }
-            if ( substr($this->getVar('link_url'), 0, 6) == 'https:') {
-                $ret['url_text'] = substr($this->getVar('link_url'), 8);
+            if (\substr($this->getVar('link_url'), 0, 6) == 'https:') {
+                $ret['url_text'] = \substr($this->getVar('link_url'), 8);
             }
 		}
 		$ret['tooltip'] = $this->getVar('link_tooltip');
@@ -231,7 +231,7 @@ class Links extends \XoopsObject
 	{
 		$ret = [];
 		$vars = $this->getVars();
-		foreach(array_keys($vars) as $var) {
+		foreach(\array_keys($vars) as $var) {
 			$ret[$var] = $this->getVar('{$var}');
 		}
 		return $ret;
