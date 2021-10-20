@@ -86,7 +86,7 @@ class Links extends \XoopsObject
      * Get form
      *
      * @param mixed $action
-     * @return XoopsThemeForm
+     * @return \XoopsThemeForm
      */
 	public function getFormLinks($action = false)
 	{

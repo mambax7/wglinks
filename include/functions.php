@@ -165,7 +165,7 @@ function wglinks_RewriteUrl($module, $array, $type = 'content')
  * @param $url
  * @param string $type
  * @param string $module
- * @return null|string|string[] $url
+ * @return string $url
  */
 function wglinks_Filter($url, $type = '', $module = 'wglinks') {
 

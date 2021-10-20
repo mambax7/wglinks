@@ -254,7 +254,6 @@ class Utility
     public static function rewriteUrl($module, $array, $type = 'content')
     {
         $comment = '';
-        /** @var \XoopsModules\Wgtimelines\Helper $helper */
         $helper = \XoopsModules\Wgtimelines\Helper::getInstance();
         //$images = $helper->getHandler('Images');
         $lenght_id   = $helper->getConfig('lenght_id');
