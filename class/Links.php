@@ -140,7 +140,7 @@ class Links extends \XoopsObject
         $form->addElement(new \XoopsFormEditor(_AM_WGLINKS_LINK_ADDRESS, 'link_address', $editorConfigs));
 		// Form Upload Image
 		$getLinkLogo = $this->getVar('link_logo');
-		$linkLogo = $getLinkLogo ? $getLinkLogo : 'blank.gif';
+		$linkLogo = $getLinkLogo ?: 'blank.gif';
 		$imageDirectory = '/uploads/wglinks/images/links/large';
 		$imageTray = new \XoopsFormElementTray(_AM_WGLINKS_LINK_LOGO, '<br />' );
 		$imageSelect = new \XoopsFormSelect( sprintf(_AM_WGLINKS_FORM_IMAGE_PATH, ".{$imageDirectory}/"), 'link_logo', $linkLogo, 5);
