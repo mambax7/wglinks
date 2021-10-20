@@ -93,7 +93,7 @@ switch($op) {
 		}
 		// Get Form
 		$GLOBALS['xoopsTpl']->assign('error', $categoriesObj->getHtmlErrors());
-		$form =& $categoriesObj->getFormCategories();
+		$form = $categoriesObj->getFormCategories();
 		$GLOBALS['xoopsTpl']->assign('form', $form->render());
 
 	break;
