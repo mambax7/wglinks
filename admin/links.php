@@ -174,7 +174,7 @@ switch($op) {
 				$GLOBALS['xoopsTpl']->assign(error, $linksObj->getHtmlErrors());
 			}
 		} else {
-			xoops_confirm(array('ok' => 1, 'link_id' => $linkId, 'op' => 'delete'), $_SERVER['REQUEST_URI'], sprintf(_AM_WGLINKS_FORM_SURE_DELETE, $linksObj->getVar('link_name')));
+			xoops_confirm(['ok' => 1, 'link_id' => $linkId, 'op' => 'delete'], $_SERVER['REQUEST_URI'], sprintf(_AM_WGLINKS_FORM_SURE_DELETE, $linksObj->getVar('link_name')));
 		}
 
 	break;

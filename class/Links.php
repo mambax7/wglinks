@@ -229,7 +229,7 @@ class Links extends \XoopsObject
 	 */
 	public function toArrayLinks()
 	{
-		$ret = array();
+		$ret = [];
 		$vars = $this->getVars();
 		foreach(array_keys($vars) as $var) {
 			$ret[$var] = $this->getVar('{$var}');

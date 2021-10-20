@@ -120,7 +120,7 @@ switch($op) {
 				$GLOBALS['xoopsTpl']->assign(error, $categoriesObj->getHtmlErrors());
 			}
 		} else {
-			xoops_confirm(array('ok' => 1, 'cat_id' => $catId, 'op' => 'delete'), $_SERVER['REQUEST_URI'], sprintf(_AM_WGLINKS_FORM_SURE_DELETE, $categoriesObj->getVar('cat_name')));
+			xoops_confirm(['ok' => 1, 'cat_id' => $catId, 'op' => 'delete'], $_SERVER['REQUEST_URI'], sprintf(_AM_WGLINKS_FORM_SURE_DELETE, $categoriesObj->getVar('cat_name')));
 		}
 
 	break;

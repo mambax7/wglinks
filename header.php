@@ -28,10 +28,10 @@ $dirname  = basename(__DIR__);
 $helper = \XoopsModules\Wglinks\Helper::getInstance();
 $linksHandler = $helper->getHandler('links');
 // Breadcrumbs
-$xoBreadcrumbs = array();
+$xoBreadcrumbs = [];
 if ($helper->getConfig('show_breadcrumbs') && $helper->getConfig('show_bcrumb_mname')) {
     if ( isset($GLOBALS['xoopsModule']) && is_object($GLOBALS['xoopsModule'])) { // necessary to check, otherwise uploader runs into errors
-        $xoBreadcrumbs[] = array('title' => $GLOBALS['xoopsModule']->getVar('name'), 'link' => WGLINKS_URL . '/');
+        $xoBreadcrumbs[] = ['title' => $GLOBALS['xoopsModule']->getVar('name'), 'link' => WGLINKS_URL . '/'];
     }
 }
 // Permission

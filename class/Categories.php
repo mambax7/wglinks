@@ -140,7 +140,7 @@ class Categories extends \XoopsObject
 	 */
 	public function toArrayCategories()
 	{
-		$ret = array();
+		$ret = [];
 		$vars = $this->getVars();
 		foreach(array_keys($vars) as $var) {
 			$ret[$var] = $this->getVar('{$var}');
