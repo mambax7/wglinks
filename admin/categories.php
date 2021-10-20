@@ -84,8 +84,8 @@ switch($op) {
 		// Set Vars
 		$categoriesObj->setVar('cat_name', $_POST['cat_name']);
 		$categoriesObj->setVar('cat_desc', $_POST['cat_desc']);
-		$categoriesObj->setVar('cat_weight', isset($_POST['cat_weight']) ? $_POST['cat_weight'] : 0);
-		$categoriesObj->setVar('cat_submitter', isset($_POST['cat_submitter']) ? $_POST['cat_submitter'] : 0);
+		$categoriesObj->setVar('cat_weight', $_POST['cat_weight'] ?? 0);
+		$categoriesObj->setVar('cat_submitter', $_POST['cat_submitter'] ?? 0);
 		$categoriesObj->setVar('cat_date_created', strtotime($_POST['cat_date_created']));
 		// Insert Data
 		if($categoriesHandler->insert($categoriesObj)) {

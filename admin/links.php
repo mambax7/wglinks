@@ -104,7 +104,7 @@ switch($op) {
         $linksObj->setVar('link_email', $_POST['link_email']);
         $linksObj->setVar('link_phone', $_POST['link_phone']);
         $linksObj->setVar('link_address', $_POST['link_address']);
-		$linksObj->setVar('link_weight', isset($_POST['link_weight']) ? $_POST['link_weight'] : 0);
+		$linksObj->setVar('link_weight', $_POST['link_weight'] ?? 0);
 		// Set Var link_logo
         $fileName = $_FILES['attachedfile']['name'];
         if (strlen($fileName) > 0) {
@@ -137,8 +137,8 @@ switch($op) {
 		} else {
 				$linksObj->setVar('link_logo', $_POST['link_logo']);
 		}
-        $linksObj->setVar('link_state', isset($_POST['link_state']) ? $_POST['link_state'] : 0);
-		$linksObj->setVar('link_submitter', isset($_POST['link_submitter']) ? $_POST['link_submitter'] : 0);
+        $linksObj->setVar('link_state', $_POST['link_state'] ?? 0);
+		$linksObj->setVar('link_submitter', $_POST['link_submitter'] ?? 0);
 		$linksObj->setVar('link_date_created', strtotime($_POST['link_date_created']));
 		// Insert Data
 		if($linksHandler->insert($linksObj)) {
