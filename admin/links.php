@@ -171,7 +171,7 @@ switch($op) {
 			if($linksHandler->delete($linksObj)) {
 				redirect_header('links.php', 3, _AM_WGLINKS_FORM_DELETE_OK);
 			} else {
-				$GLOBALS['xoopsTpl']->assign(error, $linksObj->getHtmlErrors());
+				$GLOBALS['xoopsTpl']->assign('error', $linksObj->getHtmlErrors());
 			}
 		} else {
 			xoops_confirm(['ok' => 1, 'link_id' => $linkId, 'op' => 'delete'], $_SERVER['REQUEST_URI'], sprintf(_AM_WGLINKS_FORM_SURE_DELETE, $linksObj->getVar('link_name')));
