@@ -58,7 +58,7 @@ function xoops_module_update_wglinks(&$module, $prev_version = null)
  *
  * @return bool
  */
-function update_wglinks_v10(&$module)
+function update_wglinks_v10($module)
 {
     global $xoopsDB;
     $result = $xoopsDB->query(
@@ -113,7 +113,7 @@ function update_wglinks_v10(&$module)
 }
 // irmtfan bug fix: solve templates duplicate issue
 
-function update_wglinks_v105 (&$module) {
+function update_wglinks_v105 ($module) {
     global $xoopsDB;    
     
     // Making of images folder
@@ -185,7 +185,7 @@ function update_wglinks_v105 (&$module) {
     return true;
 }
 
-function update_wglinks_v103 (&$module) {
+function update_wglinks_v103 ($module) {
     global $xoopsDB;
     // create dir for categories
     
