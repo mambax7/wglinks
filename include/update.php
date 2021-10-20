@@ -123,14 +123,18 @@ function update_wglinks_v105 ($module) {
     $images = XOOPS_UPLOAD_PATH.'/wglinks/images';
     $links = XOOPS_UPLOAD_PATH.'/wglinks/images/links/large';
     if(!is_dir($links)) {
-        mkdir($links, 0777);
+        if (!mkdir($links, 0777) && !is_dir($links)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $links));
+        }
         chmod($links, 0777);
     }
     copy($indexFile, $links.'/index.html');
     copy($blankFile, $links.'/blank.gif');
     $links = XOOPS_UPLOAD_PATH.'/wglinks/images/links/thumbs';
     if(!is_dir($links)) {
-        mkdir($links, 0777);
+        if (!mkdir($links, 0777) && !is_dir($links)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $links));
+        }
         chmod($links, 0777);
     }
     copy($indexFile, $links.'/index.html');
@@ -194,21 +198,27 @@ function update_wglinks_v103 ($module) {
     // Making of uploads/wglinks folder
     $wglinks = XOOPS_UPLOAD_PATH.'/wglinks';
     if(!is_dir($wglinks)) {
-        mkdir($wglinks, 0777);
+        if (!mkdir($wglinks, 0777) && !is_dir($wglinks)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $wglinks));
+        }
         chmod($wglinks, 0777);
     }
     copy($indexFile, $wglinks.'/index.html');
     // Making of cats uploads folder
     $categories = $wglinks.'/categories';
     if(!is_dir($categories)) {
-        mkdir($categories, 0777);
+        if (!mkdir($categories, 0777) && !is_dir($categories)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $categories));
+        }
         chmod($categories, 0777);
     }
     copy($indexFile, $categories.'/index.html');
     // Making of images folder
     $images = $wglinks.'/images';
     if(!is_dir($images)) {
-        mkdir($images, 0777);
+        if (!mkdir($images, 0777) && !is_dir($images)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $images));
+        }
         chmod($images, 0777);
     }
     copy($indexFile, $images.'/index.html');
@@ -216,7 +226,9 @@ function update_wglinks_v103 ($module) {
     // Making of images/links folder
     $categories = $images.'/categories';
     if(!is_dir($categories)) {
-        mkdir($categories, 0777);
+        if (!mkdir($categories, 0777) && !is_dir($categories)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $categories));
+        }
         chmod($categories, 0777);
     }
     copy($indexFile, $categories.'/index.html');
